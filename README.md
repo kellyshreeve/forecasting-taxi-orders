@@ -97,73 +97,68 @@ Six additional features were created:
   alt="Time series orders per hour">
 </p>
 
-There are fewer customers who churned than did not churn. This is an imbalanced classification problem. Class balancing and weighting techniques will be applied.
+There are both seasonality and an upward trend in number of taxi orders per hour. Both the mean and standard deviation increase over time, so this is a non-stationary timeseries.
 
 <p align="center">
   <img src="/images/residuals.png" 
-  width="650"
-  height="300"
+  width="600"
+  height="350"
   alt="seasonality and residuals">
 </p>
 
-Customers who began their contracts in 2014 - 2018 are almost all still with the company.  
-About 50% of customers who began their contracts in 2019 - 2020 have already churned.  
-New customers are more likely to leave than old customers.  
+There is a confirmed upward trend. Seasonality occurs in very short timeframes - possibly within the day.
  
 <p align="center">
   <img src="/images/seasonality.png" 
-  width="600"
-  height="400"
+  width="400"
+  height="300"
   alt="March seasonality">
 </p>
 
-The distribution of monthly charges has three peaks at $20, $50, and $80 per month.  
-Total charges is highly right skewed, with most people paying close to $0 total and only a few people paying over $6000 over the life of their plan. 
-Contract length is bi-modal, with many people having contracts less than 100 months or more than 2000 months.  
+Seasonality occurs within the day. Orders start low in the early morning and generally climb through the night.
 
 #### Train Results
 
 <p align="center">
   <img src="/images/lr_train_results.png"
-  width="425"
-  height="500"
+  width="600"
+  height="350"
   alt="Linear regression train results">
 </p>
 
-The best model was the LightGBM trained on SMOTE upsampled data.
-This model achieved the highest scores on roc-auc and accuracy (ROC-AUC = 0.88, accuracy = 0.81).
-The LightGBM Model will be tested on the test set.
+Using a rolling mean of size 24 and 73 lag features, linear regression trained on the training set was able to achieve and RMSE of 38.95 on the validate set. This is better than the base model using only the previous prediction.
 
 <p align="center">
   <img src="/images/rf_train_results.png"
-  width="300"
-  height="100"
+  width="600"
+  height="350"
   alt="Random Forest train results">
 </p>
 
-The LighGBM Classifier, fit on SMOTE upsampled training data, achieved a lower ROC-AUC on the test set (ROC-AUC = 0.80).
-This model is likely slightly overfit but still achieves a reasonabl training score.
+
+The tuned random forest was able to acheive and RMSE of 33.25 on the validate set. This is better than the RMSE on linear regression, meaning random forest regression better predicts future orders than linear regression.
 
 #### Test Results
 
 <p align="center">
   <img src="/images/test_results.png"
-  width="300"
-  height="100"
+  width="600"
+  height="350"
   alt="Test results">
 </p>
+
+The random forest model trained on the train and validate sets was able to acheive and RMSE of 40.29 on the test set.
 
 ### 6. Conclusions and Business Recommendations<a id='conclusions'></a>
 
 #### Conclusions
 
-LightGBM Classifier achieved the best model fit (ROC-AUC<sub>TEST</sub> = 0.80, accuracy<sub>TEST</sub> = 0.80). If this model predicts a customer will churn, there's about 80% chance the customer will actually churn (precision<sub>TEST</sub> = 0.80). Of customers who do churn, the model can be expected to predict about 57% of them (recall<sub>TEST</sub> = 0.57).
+Swift Lift Taxi Company wanted to predict the number of taxi orders in the next hour, using historical time series data. This was a non-stationary time series problem, with both mean and standard deviation increasing over time. Taxi orders had a general upward trend over time and seasonality by day.  
+
+Both linear regression and random forest models were tuned with a validation set to predict orders in the next hour. Random forest regression with 50 trees, max depth of 15, and 170 lag features (RMSE = 33.25) outperformed the linear regression with 73 lag variables (RMSE = 38.95). The random forest regression had a similar RMSE when tested on the test set (RMSE = 40.29). The model is likely not overfit.
 
 #### Business Recommendations 
 
-Telecom can feel confident implementing this model to predict which customers will churn. They can expect that if the model says a customer will churn, it's very likely that that customer will indeed churn. The model may miss some customers who will churn, so it's not a bad idea to offer some additional small promotions across the clientelle. Telecom would do well to focus on keeping new customers, as old customers are likely to continue with the company.  
+Going forward, Swift Lift Taxi Company can use the random forest regression model to predict how many orders they will receive in the next hour. They can use this information to post special promotions to attract more drivers during busy times and consumer promotions to attract more customers during slow times.
 
-#### Future Research 
-
-More research should be done on the company's newer customers to determine why they are leaving the company. Follow up surveys and additional promotions with this group could help strengthen new client retention.
 
