@@ -110,8 +110,8 @@ There is a confirmed upward trend. Seasonality occurs in very short timeframes -
  
 <p align="center">
   <img src="/images/seasonality.png" 
-  width="400"
-  height="300"
+  width="600"
+  height="350"
   alt="March seasonality">
 </p>
 
