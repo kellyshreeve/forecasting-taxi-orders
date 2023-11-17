@@ -15,8 +15,7 @@
 4. [Code Structure](#structure)  
 5. [Results and Evaluation](#results)  
 6. [Conclusions and Business Recommendations](#conclusions)
-
-[View Project Code](https://github.com/kellyshreeve/forecasting-taxi-orders/blob/main/notebooks/taxi_analysis.ipynb)
+7. [View Project Code](https://github.com/kellyshreeve/forecasting-taxi-orders/blob/main/notebooks/taxi_analysis.ipynb)
 
 ### 1. Project Overview<a id='overview'></a>
 **Background:** Sweet Lift Taxi company has historical data on taxi orders over time and wants to predict the number of taxi orders expected in future hours.  
