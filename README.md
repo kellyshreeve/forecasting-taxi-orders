@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="images/taxi_clipart.png"
-  width="375"
+  width="400"
   height="250"
   alt="Phone clip art">
 </p>
