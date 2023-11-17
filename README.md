@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="images/taxi_clipart.png"
-  width="350"
+  width="375"
   height="250"
   alt="Phone clip art">
 </p>
@@ -14,7 +14,9 @@
 3. [Data](#data)  
 4. [Code Structure](#structure)  
 5. [Results and Evaluation](#results)  
-6. [Conclusions and Business Recommendations](#conclusions)  
+6. [Conclusions and Business Recommendations](#conclusions)
+
+[View Project Code](https://github.com/kellyshreeve/forecasting-taxi-orders/blob/main/notebooks/taxi_analysis.ipynb)
 
 ### 1. Project Overview<a id='overview'></a>
 **Background:** Sweet Lift Taxi company has historical data on taxi orders over time and wants to predict the number of taxi orders expected in future hours.  
@@ -161,4 +163,4 @@ Both linear regression and random forest models were tuned with a validation set
 
 Going forward, Swift Lift Taxi Company can use the random forest regression model to predict how many orders they will receive in the next hour. They can use this information to post special promotions to attract more drivers during busy times and consumer promotions to attract more customers during slow times.
 
-
+[View Project Code](https://github.com/kellyshreeve/forecasting-taxi-orders/blob/main/notebooks/taxi_analysis.ipynb)
